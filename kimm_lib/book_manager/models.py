@@ -8,7 +8,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.code + self.name
-
+ 
 class BookInfo(models.Model):
     isbn = models.CharField(max_length=20, unique=True)
     title = models.CharField(max_length=150)
@@ -26,3 +26,6 @@ class Book(models.Model):
     arrival_date = models.DateField(null=True)
     disposal_date = models.DateField(null=True, blank=True)
     remarks = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.bookinfo + self.arrival_date + self.disposal_date + self.remarks
