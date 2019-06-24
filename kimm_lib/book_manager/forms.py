@@ -9,9 +9,10 @@ class BookInfoForm(forms.ModelForm):
     
     class Meta:
         model = BookInfo
-        fields = [ 'title'  , 'category' ,'author' ,'publisher' ,'publish_date']
+        fields = ['isbn' ,  'title'  , 'category' ,'author' ,'publisher' ,'publish_date']
         widgets ={
-            'publish_date' : forms.SelectDateWidget
+            'publish_date' : forms.SelectDateWidget,
+            'isbn': forms.HiddenInput,
         }
 class BookForm(forms.ModelForm):
     class Meta:
