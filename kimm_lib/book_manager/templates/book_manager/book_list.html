@@ -1,0 +1,59 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【資料リスト】</h2>
+
+<table style="width:100%; border:1px solid black;">
+        <tr style="border:1px solid black;">
+          <th>資料id</th>
+          <th>資料タイトル</th>
+          <th>著者</th>
+          <th>ISBN番号</th>
+          <th>分類</th>
+          <th>出版社</th>
+          <th>入荷年月日</th>
+          <th>廃棄</th>
+        </tr>
+        {% for obj in object_list %}
+        <tr style="border:1px solid black;">
+          <td>{{ obj.id }}</td>
+          <td><a style='color:blue;' href="{% url 'book_detail' obj.pk %}">{{ obj.bookinfo.title }}</a></td>
+          <td>{{ obj.bookinfo.author }}</td>
+          <td>{{ obj.bookinfo.isbn }}</td>
+          <td>{{ obj.bookinfo.category.name }}</td>
+          <td>{{ obj.bookinfo.publisher }}</td>
+          <td><a style='color:blue;' href="#">{{ obj.arrival_date }}</a></td>
+          <td><a style='color:blue;' href="#">廃棄</a></td>
+        </tr>
+        {% endfor %}
+
+</table>
+
+
+{% for page_num in page_obj.paginator.page_range %}
+	{% if page_num == page_obj.number %}
+		{{ page_num }}
+	{% else %}
+		<a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+	{% endif %}
+{% endfor %}
+
+
+<div class="col-12">
+    <div class="mt-3 text-center">
+      {% if page_obj.has_previous %}
+        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}">&laquo;1 page</a>
+        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+      <span>{{ page_obj.number }}/{{ paginator.num_pages }}page</span>
+      {% if page_obj.has_next %}
+        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.next_page_number }}">next</a>
+        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.paginator.num_pages }}">&raquo;{{page_obj.paginator.num_pages}}</a>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

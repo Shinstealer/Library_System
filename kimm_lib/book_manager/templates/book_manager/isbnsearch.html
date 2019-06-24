@@ -1,0 +1,15 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<div style="width: 100%;">
+    <form action="{% url 'isbnsearch' %}" method="POST">
+    {% csrf_token %}
+        <label for="isbnsearch">ISBN検索</label>
+        <input type="text" id="isbn" class="col-2" name="isbnsearch">
+        <input type="submit" class="btn btn-primary">
+    </form>
+
+</div>
+
+{% endblock %}

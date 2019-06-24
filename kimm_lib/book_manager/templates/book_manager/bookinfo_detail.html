@@ -1,0 +1,39 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-default">
+          <div class="card-body">
+             isbn:{{ object.isbn|linebreaksbr }}
+          </div>
+          <div class="card-footer">
+             title: {{ object.title|linebreaksbr }}
+            </div>
+            <div class="card-footer">
+              category: {{ object.category|linebreaksbr }}
+            </div>
+            <div class="card-footer">
+              author: {{ object.author|linebreaksbr }}
+            </div>
+            <div class="card-footer">
+              publisher: {{ object.publisher|linebreaksbr }}
+            </div>
+            <div class="card-footer">
+              publish_date: {{ object.publish_date|linebreaksbr }}
+            </div>
+
+            
+          <div class="card-footer">
+            <a class="btn btn-primary" href="{% url 'bookinfo_update' object.pk %}">UPDATE</a>
+            <a class="btn btn-danger" href="#">DELETE</a>
+            <a class="btn btn-info" href="{% url 'bookinfo_list'%}">Back to List</a>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

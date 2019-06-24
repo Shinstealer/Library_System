@@ -1,0 +1,31 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-default">
+          <div class="card-body">
+             資料情報:{{ object.bookinfo|linebreaksbr }}
+          </div>
+          <div class="card-footer">
+             入荷日: {{ object.arrival_date|linebreaksbr }}
+            </div>
+            <div class="card-footer">
+              備考: {{ object.remarks|linebreaksbr }}
+            </div>
+            
+
+            
+          <div class="card-footer">
+            <a class="btn btn-primary" href="{% url 'book_update' object.pk %}">UPDATE</a>
+            <a class="btn btn-danger" href="#">DELETE</a>
+            <a class="btn btn-info" href="{% url 'book_list'%}">Back to List</a>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
