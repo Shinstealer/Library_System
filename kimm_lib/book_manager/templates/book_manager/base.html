@@ -8,85 +8,155 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
-    <title>{{title}}</title>
+    <!-- forms.css/widget.cssスタイル関連 -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+    <title>{% block TITLE_AREA %}{% endblock %}</title>
     <style>
-        *{ 
-            font-family: "Sawarabi Gothic";
-            margin: 0;
-            padding: 0; 
-        
-        }
-        body{
-            background-color:#F5F5F5;
-            text-align: center;
-            
-        }
-        a , u{
-            text-decoration: none !important;
-            color: black;
-        }
-        .login_container{
-            margin-top: 10px;
-            height: 25px;
-            width: 100%;
-        }
-        .login_user{
-            font-size: 25px;
-            float: right;
-            margin-right: 3em;
-        }
-        #base_title{
-            font-size: 3em;
-            margin-top: 15px;
-            text-align: center;
-            height: 95px;
-            width: 100%;
-        }
-        
-        .manager{
-            font-size: 25px;
-        }
-        .base_img img{
-            width: 250px;
-            height: 350px;
-        }
+      *{
+          font-family: "Sawarabi Gothic";
+          margin: 0;
+          padding: 0;
 
-        .create{
-    width: 100%;
-    height: 1000px;
+      }
+      body{
+          background-color:#F5F5F5;
+          text-align: center;
+
+      }
+      a , u{
+          text-decoration: none !important;
+          color: black;
+      }
+      .main_header{
+        background-color: #5b737c;
+        padding: 25px;
+        box-shadow: 10px 10px 5px grey;
+        width: 95%;
+        margin: 0 auto;
+      }
+      .main_header a{
+        color: #F5F5F5;
+        font-weight: 500;
+
+      }
+      .login_container{
+          margin-top: 20px;
+          height: 25px;
+          width: 100%;
+      }
+      .login_row{
+        width: 55%;
+        float: right;
+      }
+      .login_user{
+          font-size: 25px;
+          float: right;
+          margin-right: 3em;
+      }
+      #base_title{
+          font-size: 5em;
+          margin: 40px;
+          text-align: center;
+          height: 95px;
+          width: 100%;
+
+      }
+      nav{
+        padding: 20px;
+        font-size: 20px;
+        background-color: #447e9b
+
+      }
+
+      .manager{
+          font-size: 25px;
+      }
+      .base_img img{
+          width: 250px;
+          height: 350px;
+      }
+
+      .create{
+  width: 100%;
+  height: 1000px;
 }
-.createbox{
+  .createbox{
     margin: auto;
 }
-    </style>
+  table{
+  box-shadow: 10px 10px 5px grey;
+  width:80%;
+  margin: 0 auto;
+}
+  tr{
+
+  color: white;
+}
+  th{
+  background-color: #b2c430;
+  font-size: 15px;
+  
+}
+  td{
+  background-color: #969393;
+  font-size: 15px;
+  }
+  td > a{
+  color: white !important;
+}
+  tr th{
+  text-align: center;
+}
+
+
+  </style>
+
 </head>
 <body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<div class="login_container">
-    <span class="login_user">ようこそ！管理者様</span>
+
+<div class="login_container container">
+  <div class="row login_row">
+    <div class="col6"></div>
+    <span class="col6 login_user" style="font-weight: bold;">{{ welcome_word }}</span>
+    <div class="col6"><a style="color:#F5F5F5; font-size: 1em;" class="btn btn-dark" href="{% url 'logout' %}">ログアウト</a></div>
+  </div>
 </div>
+<br>
+<hr>
 
 <div class="contatiner">
-        
+
         <div>
-            
+
             <div id="base_title">
-                    図書管理システム
+              <a style="color:#3b8d99;" href="{% url 'index' %}">図書管理システム</a>
             </div>
         </div>
-        
+
         <hr>
+
+
+
+      <div class="main_header">
         <div class="row">
-                <div class="col manager"><a href="#">会員管理</a></div>
-                <div class="col manager"><a href="{% url 'isbnsearch' %}">資料追加</a></div>
-                <div class="col manager"><a href="{% url 'bookinfo_list' %}">資料目録検索</a></div>
-                <div class="col manager"><a href="{% url 'book_list' %}">資料台帳検索</a></div>
-              </div>
+          <div class="col manager"><a href="{% url 'operator_list' 'all' %}">オペレータユーザ管理</a></div>
+          <div class="col manager"><a href="{% url 'user_list' 'all' %}">会員管理</a></div>
+          <div class="col manager"><a href="{% url 'isbnsearch' %}">資料追加</a></div>
+          <div class="col manager"><a href="{% url 'bookinfo_list' 'all' %}">資料目録検索</a></div>
+          <div class="col manager"><a href="{% url 'book_list' 'all' %}">資料台帳検索</a></div>
+        </div>
+      </div>
 </div>
+
+
 
 {% if messages %}
   <div class="container">
@@ -94,8 +164,8 @@
       <div class="col-12">
         <div class="messages mt-3">
           {% for message in messages %}
-            <div class="alert alert-dismissable alert-{{ message.tag }}" data-alert="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="alert alert-dismissable alert-{{ message.tag }}" data-alert="alert" style="background-color: aliceblue">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
               {{ message }}
             </div>
           {% endfor %}
@@ -103,19 +173,25 @@
       </div>
     </div>
   </div>
+
 {% endif %}
 
+<div style="margin-top: 30px;">
+    {% block content %}
 
-{% block content %}
 
-
-{% endblock %}
-
+    {% endblock %}
+    </div>
 
 </body>
 
-<script>
 
+
+<script type="text/javascript">
+{% block javascript %}
+
+{% endblock %}
 </script>
+
 
 </html>

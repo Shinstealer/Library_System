@@ -1,5 +1,7 @@
 {% extends 'book_manager/base.html' %}
 
+{% block TITLE_AREA %}資料追加/台帳登録{% endblock %}
+
 
 
 {% block meta_title %}
@@ -18,34 +20,38 @@
 
 {% block content %}
 
+title : {{ bookinfo.title }}<br>
+isbn : {{ bookinfo.isbn }}
+
 <form method="post">
     {% csrf_token %}
         <div style="width: 100%; height :200px;">
             <div class="row" id="textbody" style="width:25%;margin: 20px auto;" >
-                
-                    
+
+
                 <table>
                     <div class="col-12">
 
                     {{ form.as_table}}
-                    
+
                     </div>
                 </table>
             </div>
- 
+
         </div>
-                       
+
        <br>
        <br>
        <br>
       <div class="container">
         <div class="col-12">
-          <button class="btn btn-primary" id="save">SAVE!</button>
-          <a class="btn btn-danger" href="{% url 'isbnsearch' %}">Back</a>
+          <button class="btn btn-secondary" onclick="javascript:history.go(-1);">戻る</button>
+          <button class="btn btn-primary" style="color: white;" id="save">登録する</button>
+
         </div>
       </div>
     </div>
-    
+
   </form>
 
 

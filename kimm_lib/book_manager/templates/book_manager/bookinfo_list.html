@@ -1,55 +1,107 @@
 {% extends 'book_manager/base.html' %}
 
+{% block TITLE_AREA %}資料目録一覧・検索{% endblock %}
+
 {% block content %}
 
 <br>
-<br>
-<h2>【資料目録リスト】</h2>
-{{ form }}
 <hr>
-<table style="width:100%; border:1px solid black;">
-        <tr style="border:1px solid black;">
-          <th>ISBN番号</th>
-          <th>資料タイトル</th>
-          <th>分類</th>
-          <th>著者</th>
-          <th>出版社</th>
-          <th>出版日</th>
-          <th>冊数</th>
-          <th>変更</th>
-          <th>削除</th>
+<br>
+<h2>【資料目録検索】</h2>
+<br>
+<form class="" action="{% url 'bookinfo_list' 'search' %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" name="" value="検索">
+</form>
+<br>
+{{ word }}
+<br>
+{% if object_list|length == 0 %}
+<p style="color:red;">※何も見つかりませんでした</p>
+{% endif %}
+<br>
+<table class="table table-hover" style="width: 80%; margin: 0 auto;">
+        <tr>
+
+          <th scope="col">資料タイトル</th>
+          <th scope="col">著者</th>
+          <th scope="col">ISBN番号</th>
+          <th scope="col">分類</th>
+          <th scope="col">出版社</th>
+          <th scope="col">出版日</th>
+          <th scope="col">予約</th>
+          <th scope="col">編集</th>
+          <th scope="col">削除</th>
         </tr>
         {% for obj in object_list %}
-        <tr style="border:1px solid black;">
-          <td>{{ obj.isbn }}</td>
-          <td><a style='color:blue;' href="{% url 'bookinfo_detail' obj.pk %}">{{ obj.title }}</a></td>
-          <td>{{ obj.category.name }}</td>
+        {% if obj.delete_date %}<!--← 修正必要-->
+        {% else %}
+        <tr>
+          <td><a href="{% url 'bookinfo_detail' obj.pk %}">{{ obj.title }}</a></td>
           <td>{{ obj.author }}</td>
+          <td>{{ obj.isbn }}</td>
+          <td>{{ obj.category.name }}：{{obj.category.code}}</td>
           <td>{{ obj.publisher }}</td>
           <td>{{ obj.publish_date }}</td>
-          <td>5冊</td>
-          <td><a style='color:blue;' href="#">変更</a></td>
-          <td><a style='color:blue;' href="#">削除</a> </td>
+          <td><a class="btn btn-info" href="{% url 'wish_book' obj.pk %}" style="font-size: 15px;">予約</a> </td>
+          <td><a class="btn btn-success" href="{% url 'bookinfo_update' obj.pk %}" style="font-size: 15px;">編集</a></td>
+          <td><a class="btn btn-danger" href="{% url 'check_bookinfo' obj.pk %}" style="font-size: 15px;">削除</a> </td>
+
         </tr>
+        {% endif %}
         {% endfor %}
 
 </table>
 
 
-<div class="col-12">
-    <div class="mt-3 text-center">
-      {% if page_obj.has_previous %}
-        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}">&laquo;1 page</a>
-        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
-      {% endif %}
-      <span>{{ page_obj.number }}/{{ paginator.num_pages }}page</span>
-      {% if page_obj.has_next %}
-        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.next_page_number }}">next</a>
-        <a class="btn btn-secondary" href="{% url 'bookinfo_list' %}?page={{ page_obj.paginator.num_pages }}">&raquo;{{page_obj.paginator.num_pages}}</a>
-      {% endif %}
-    </div>
-  </div>
+<!--ページネーション-->
+<div class="pagination" style="">
+    <ul class="pagination" style="margin: 0 auto; margin-top:10px;">
+        <!-- 前へ の部分 -->
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="#" style="color:black;">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
 
+        <!-- 数字の部分 -->
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <!-- 次へ の部分 -->
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="#" style="color:black;">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
+<br>
+<hr>
+<a href="{% url 'bookinfo_list' 'all' %}" class="btn btn-dark" style="color:white;">全件一覧へ</a>
 
 
 

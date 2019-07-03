@@ -1,4 +1,7 @@
 {% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}資料目録登録・編集{% endblock %}
+
 {% block meta_title %}
   {% if object.pk %}
     {{ object.title }}
@@ -15,7 +18,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div>
     <h3>ISBN番号：{{isbn}}</h3>
 </div>
@@ -24,27 +26,27 @@
     <div id="create" style="width: 100%; height: 300px;">
         <div class="container createbox" style="width:25%; margin: 20px auto;">
             <div class="row" id="textbody">
-                    
+
                 <table>
                     <div class="col-12">
-                    
+
                     {{ form.as_table }}
-              
+
                 </table>
             </div>
         </div>
 
     </div>
-    
+
 
       <div class="container">
         <div class="col-12">
-          <button class="btn btn-primary" id="save">SAVE!</button>
-          <a class="btn btn-danger" href="{% url 'isbnsearch' %}">Back</a>
+          <a class="btn btn-dark" style="color: white;" href="{% url 'isbnsearch' %}">戻る</a>
+          <button class="btn btn-primary" id="save">登録する</button>
         </div>
       </div>
-    </div>
-    
+
+
   </form>
-  
+
 {% endblock %}

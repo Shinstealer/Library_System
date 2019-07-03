@@ -1,0 +1,6 @@
+from operator_manager.views.check_operator_views import CheckOperator
+from operator_manager.views.complate_operator_views import CompleteOperatorView
+from operator_manager.views.operator_list_view import OperatorListView
+from operator_manager.views.operator_detail_view import OperatorDetailView
+from operator_manager.views.operator_create import OperatorCreateView
+from operator_manager.views.operator_edit import OperatorEditView

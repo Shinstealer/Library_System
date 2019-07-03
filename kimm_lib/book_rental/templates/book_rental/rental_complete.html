@@ -1,0 +1,42 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【貸し出し完了】</h2>
+      <table style="width:70%;margin: 0 auto;">
+
+        <tr>
+          <th>資料id</th>
+          <td>{{ book.pk }}</td>
+        </tr>
+
+        <tr>
+          <th>資料タイトル</th>
+          <td>{{ book.bookinfo.title }}</td>
+        </tr>
+
+        <tr>
+          <th>会員ID</th>
+          <td>{{ user.pk }}</td>
+        </tr>
+
+        <tr>
+          <th>会員ネーム</th>
+          <td>{{ user.full_name }}</td>
+        </tr>
+
+      </table>
+      <br>
+      <br>
+      <p>貸し出し処理が完了しました。</p>
+      <h3>返却期限は【{{ rental.return_deadline }}】です。</h3>
+
+
+<br>
+<hr>
+<a class="btn btn-info"  href="{% url 'index' %}" style="color: white;">ホームへ戻る</a>
+
+
+{% endblock %}

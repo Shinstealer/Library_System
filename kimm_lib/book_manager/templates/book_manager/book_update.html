@@ -1,6 +1,6 @@
 {% extends 'book_manager/base.html' %}
 
-
+{% block TITLE_AREA %}台帳編集{% endblock %}
 
 {% block meta_title %}
   {% if object.pk %}
@@ -24,23 +24,23 @@
                 <table>
                     <div class="col-12">
                     {{ form.as_table }}
-              
+
                 </table>
             </div>
- 
+
         </div>
-                       
+
        <br>
        <br>
        <br>
       <div class="container">
         <div class="col-12">
-          <button class="btn btn-primary" id="save">SAVE!</button>
-          <a class="btn btn-danger" href="{% url 'index' %}">Back</a>
+          <button class="btn btn-primary" id="save">登録する</button>
+          <input type="button" value="戻る" class="btn btn-danger" onClick="javascript:history.go(-1);">
         </div>
       </div>
     </div>
-    
+
   </form>
 
 

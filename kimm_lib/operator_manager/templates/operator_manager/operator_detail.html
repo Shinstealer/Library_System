@@ -1,0 +1,41 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+<a href="{% url 'operator_edit' object.pk %}" class="btn btn-success"   style='color:white;'>編集</a>   
+<a href="{% url 'check_operator' object.pk %}" class="btn btn-danger" style='color:white;'>削除</a>
+<br>
+<br>
+<h2>【オペレータユーザ情報詳細】</h2>
+<div class="">
+        <h2>ID：{{ object.id }}</h2>
+      </div>
+      <table class="table table-hover"    style="width:60%;margin: 0 auto; background-color: white;">
+
+        <tr>
+          <th scope="col">名前</th>
+          <td>{{ object.full_name }}</td>
+        </tr>
+
+        <tr>
+          <th scope="col">e-mail</th>
+          <td>{{ object.email }}</td>
+        </tr>
+        <tr>
+          <th scope="col">生年月日</th>
+          <td>{{ object.birthday }}</td>
+        </tr>
+
+        <tr>
+          <th scope="col">役職</th>
+          <td>{{ object.position }}</td>
+        </tr>
+
+      </table>
+      <br>
+      <hr>
+      <input type="button" value="会員一覧へ戻る" onClick="javascript:history.go(-1);">
+
+
+
+
+{% endblock %}

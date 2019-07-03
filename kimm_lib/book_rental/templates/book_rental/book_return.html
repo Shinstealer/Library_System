@@ -1,0 +1,22 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}返却完了{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【返却完了】</h2>
+
+      <p>返却処理が完了しました。</p>
+
+
+<br>
+<a href="{% url 'user_detail' user.pk %}">会員の詳細ページへ戻る</a>
+<br>
+<hr>
+<br>
+<a href="{% url 'index' %}">ホームへ</a>
+
+
+{% endblock %}

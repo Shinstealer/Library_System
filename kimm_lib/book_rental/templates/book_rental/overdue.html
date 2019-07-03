@@ -1,0 +1,64 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}延滞者一覧{% endblock %}
+
+{% block content %}
+<br>
+<hr>
+<br>
+{% if sugita %}
+<h1>{{sugita}}</h1>
+{% else %}
+<h2>【延滞者一覧】</h2>
+<h4>30日以上の延滞者</h4>
+<table style="width:80%; margin: 0 auto;">
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+        </tr>
+        {% if object_list %}
+        {% for obj in object_list %}
+          <tr>
+          <td>{{ obj.id }}</td>
+          <td><a style='color:blue;' href="{% url 'user_detail' obj.user.id %}">{{ obj.user.full_name }}</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+</table>
+<h4>10日以上の延滞者</h4>
+<table style="width:80%; margin: 0 auto;">
+        <tr >
+          <th>ID</th>
+          <th>名前</th>
+        </tr>
+        {% if object_list1 %}
+        {% for obj in object_list1 %}
+          <tr>
+          <td>{{ obj.id }}</td>
+          <td><a style='color:blue;' href="{% url 'user_detail' obj.user.id %}">{{ obj.user.full_name }}</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+</table>
+<h4>数日の延滞者</h4>
+<table style="width:80%; margin: 0 auto;">
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+        </tr>
+        {% if object_list2 %}
+        {% for obj in object_list2 %}
+          <tr>
+          <td>{{ obj.id }}</td>
+          <td><a style='color:blue;' href="{% url 'user_detail' obj.user.id %}">{{ obj.user.full_name }}</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+</table>
+{% endif %}
+<a class="btn btn-primary" href="{% url 'user_list' 'all' %}" style="color: white;">検索へ戻る</a>
+
+
+{% endblock %}

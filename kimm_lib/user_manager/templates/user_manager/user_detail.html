@@ -1,0 +1,104 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<h2>【会員情報詳細】</h2>
+<div class="">
+        <h2>ID：{{ object.id }}</h2>
+      </div>
+<div>
+  <table class="table table-hover" style="width:50%;margin: 0 auto;">
+
+    <tr>
+      <th scope="col">名前</th>
+      <td>{{ object.full_name }}</td>
+    </tr>
+    <tr>
+      <th scope="col">住所</th>
+      <td>{{ object.address }}</td>
+    </tr>
+    <tr>
+      <th scope="col">tel</th>
+      <td>{{ object.tel }}</td>
+    </tr>
+    <tr>
+      <th scope="col">E-mail</th>
+      <td>{{ object.email }}</td>
+    </tr>
+    <tr>
+      <th scope="col">生年月日</th>
+      <td>{{ object.birthday }}</td>
+    </tr>
+    <tr>
+      <th scope="col">加入日</th>
+      <td>{{ object.join_date }}</td>
+    </tr>
+
+  </table>
+
+</div>
+      <br>
+      <a class="btn btn-primary" href="{% url 'user_edit' object.pk %}" style='color:white;'>編集</a>
+      <a class="btn btn-danger" href="{% url 'check_user' object.pk %}" style='color:white;'>削除</a>
+
+      <hr>
+      <br>
+      <br>
+      <h3>～貸し出しリスト～</h3>
+      <div>
+        <table class="table table-hover" style="width:60%; ;margin: 0 auto;">
+          <tr>
+            <th scope="col">資料id</th>
+            <th scope="col">資料タイトル</th>
+            <th scope="col">返却</th>
+          </tr>
+    {% for rental in rental_list %}
+
+          <tr>
+            <td>{{ rental.book.id }}</td>
+            <td>{{ rental.book.bookinfo.title }}</td>
+            <td><a class="btn btn-info" style="color:white;" href="{% url 'return_check' rental.book.id %}">返却</a></td>
+        </tr>
+    {% endfor %}
+  </table>
+</div>
+<br>
+<h3>～予約中リスト～</h3>      
+<div>
+  {% if wish_history|length == 0 %}
+  <p>現在予約はありません</p>
+  {% else %}
+  <table style="width:60%;margin: 0 auto;">
+  <tr>
+    <th>資料タイトル</th>
+    <th>著者</th>
+    <th>ISBN</th>
+    <th>予約日</th>
+    <th>確保状態</th>
+    <th>予約キャンセル</th>
+  </tr>
+  {% for wish in wish_history %}
+
+  <tr>
+    <td>{{ wish.bookinfo.title }}</td>
+    <td>{{ wish.bookinfo.author }}</td>
+    <td>{{ wish.bookinfo.isbn }}</td>
+    <td>{{ wish.reserve_date }}</td>
+    {% if wish.book is None %}
+      <td>確保待ち</td>
+    {% else %}
+      <td>確保中</td>
+    {% endif %}
+    <td><a class="btn btn-danger" href="{% url 'wish_cancel' wish.id %}" style="color: white;">予約キャンセル</a></td>
+
+  </tr>
+    {% endfor %}
+    </table>
+  {% endif %}
+
+</div>
+<br>    
+<input class="btn btn-info" type="button" value="会員一覧へ戻る" onClick="javascript:history.go(-1);">      
+
+{% endblock %}

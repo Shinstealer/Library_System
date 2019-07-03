@@ -5,3 +5,6 @@ from django.core.validators import *
 class Category(models.Model):
     code = models.CharField(max_length=2, unique=True)
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.code + " " + self.name

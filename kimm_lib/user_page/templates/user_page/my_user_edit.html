@@ -1,0 +1,27 @@
+{% extends 'book_rental/book_rental_base.html' %}
+
+{% block content %}
+
+
+<h2>【個人情報編集】</h2>
+    <p style="color:red;">{{ word }}</p>
+      <form class="" action="{% url 'my_user_edit' %}" method="post">
+          {% csrf_token %}
+          <table style="margin: 0 auto;">
+              {{ form.as_table }}
+          </table>
+          <br>
+          <input class="btn btn-primary" type="button" value="戻る" onClick="javascript:history.go(-1);">
+          <input class="btn btn-success" type="submit" name="" value="編集確定">
+      </form>
+
+      
+      
+<br>
+
+
+
+
+
+{% endblock %}
+s

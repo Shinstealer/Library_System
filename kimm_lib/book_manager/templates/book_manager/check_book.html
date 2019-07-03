@@ -1,0 +1,41 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}資料の廃棄・紛失{% endblock %}
+
+{% block content %}
+<br>
+<h1>{{title}}の廃棄・紛失処理</h1>
+<table style="width:70%; margin: 0 auto;">
+  <tr>
+    <th>資料ID</th><th>資料タイトル</th><th>入荷年月日</th>
+    <tr>
+    <td>{{ object.id }}</td><td>{{ title }}</td><td>{{ object.arrival_date }}</td>
+  </tr>
+</table>
+
+<br>
+<form method="post" onSubmit="return check()">
+    {% csrf_token %}
+      <div class="container">
+        <div class="col-12">
+          <input type="date" name = "ddate" required pattern="[^\d{4}/\d{1,2}/\d{1,2}$]">
+          <br>
+          <br>
+          <button class="btn btn-primary" onClick="javascript:history.go(-1);">戻る</button>
+          <button class="btn btn-danger" id="save" type = "submit">削除</button>
+        </div>
+      </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+
+function check(){
+  if(confirm('本当に削除しますか？')){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}貸出エラー{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【貸出エラー】</h2>
+<p style="color:red;">※{{ word }}</p>
+
+<input type="button" value="戻る" onClick="javascript:history.go(-1);">
+<br>
+<hr>
+<a class="btn btn-secondary" href="{% url 'index' %}">ホームへ戻る</a>
+
+
+
+{% endblock %}

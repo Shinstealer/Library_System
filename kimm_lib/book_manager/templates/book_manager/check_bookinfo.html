@@ -1,0 +1,31 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}資料目録の削除{% endblock %}
+
+{% block content %}
+
+<h1>{{object.title}}の削除</h1>
+本当に目録:{{object.title}}<br>
+ID:{{object.id}}<br>
+を削除しますか？？
+
+<table style="width:100%; border:1px solid black;">
+
+  <tr style="border:1px solid black;">
+    <th>ISBN番号</th><th>資料タイトル</th><th>分類コード</th><th>著者</th><th>出版社</th><th>出版日</th>
+    <tr>
+    <td>{{ object.isbn }}</td><td>{{ object.title }}</td><td>{{ object.category_id}}</td><td>{{ object.author }}</td>
+    <td>{{ object.publisher }}</td><td>{{ object.publish_date }}</td>
+    </tr>
+</table>
+
+<form method="post">
+    {% csrf_token %}
+      <div class="container">
+        <div class="col-12">
+          <button class="btn btn-primary" id="save">削除</button>
+          <input type="button" value="戻る" class="btn btn-danger" onClick="javascript:history.go(-1);">
+        </div>
+      </div>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}削除完了{% endblock %}
+
+{% block content %}
+
+<h1>削除が完了しました</h1>
+<a class="btn btn-danger" href="{% url 'book_list' 'all' %}">Back</a>
+
+
+{% endblock %}

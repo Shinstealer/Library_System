@@ -1,6 +1,9 @@
 {% extends 'book_manager/base.html' %}
 
+{% block TITLE_AREA %}資料追加/ISBN入力{% endblock %}
+
 {% block content %}
+
 
 <div style="width: 100%;">
     <form action="{% url 'isbnsearch' %}" method="POST">

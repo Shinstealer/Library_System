@@ -1,0 +1,27 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+<br>
+<h1>オペレータ{{object.name}}の削除</h1>
+<table style="width:70%;">
+  <tr>
+    <th>ID</th>
+    <th>オペレータユーザ名</th><th>E-mail</th><th>生年月日</th><th>役職</th>
+    <tr>
+    <td>{{ object.id }}</td><td>{{ object.full_name }}</td>
+    <td>{{ object.email }}</td><td>{{ object.birthday }}</td><td>{{ object.position }}</td>
+    </tr>
+</table>
+
+<br>
+<form method="post">
+    {% csrf_token %}
+      <div class="container">
+        <div class="col-12">
+          <a class="btn btn-info" href="{% url 'operator_list' 'all' %}" style="color: white;">戻る</a>
+          <button class="btn btn-danger" id="save" type = "submit">削除</button>
+          
+        </div>
+      </div>
+</form>
+{% endblock %}

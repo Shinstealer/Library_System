@@ -13,4 +13,4 @@ class BookInfo(models.Model):
     delete_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return self.title + str(self.category) + self.author + self.publisher 
+        return self.title + str(self.category) + self.author + self.publisher

@@ -1,0 +1,48 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【予約キャンセル確認】</h2>
+      <table style="width:70%;margin: 0 auto;">
+
+        <tr>
+          <th>資料タイトル</th>
+          <td>{{ wish.bookinfo.title }}</td>
+        </tr>
+
+        <tr>
+          <th>著者</th>
+          <td>{{ wish.bookinfo.author }}</td>
+        </tr>
+
+        <tr>
+          <th>ISBN番号</th>
+          <td>{{ wish.bookinfo.isbn }}</td>
+        </tr>
+
+        <tr>
+          <th>予約日</th>
+          <td>{{ wish.reserve_date }}</td>
+        </tr>
+
+        <tr>
+          <th>予約者会員id</th>
+          <td>{{ wish.user.id }}</td>
+        </tr>
+
+
+
+      </table>
+      <form class="" action="{% url 'wish_cancel' wish.pk %}" method="post">
+          {% csrf_token %}
+          <p>予約キャンセルを確定しますか？</p>
+          <input type="submit" value="確定">
+          <button class="btn btn-secondary"　onClick="javascript:history.go(-1);">戻る</button>
+          
+      </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'book_rental/book_rental_base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【個人履歴】</h2>
+<h3>～貸出履歴～</h3>
+{% if rental_history|length == 0 %}
+<p>現在貸出履歴はありません。</p>
+{% else %}
+<table border="1" style="width:60%; border:1px solid black;margin: 0 auto;">
+        <tr style="border:1px solid black; background-color:green; color:white;">
+          <th>資料id</th>
+          <th>資料タイトル</th>
+          <th>著者</th>
+          <th>貸出日</th>
+          <th>返却期限</th>
+          <th>返却日</th>
+          <th>状態</th>
+        </tr>
+  {% for rental in rental_history %}
+
+        <tr style="border:1px solid black;">
+          <td>{{ rental.book.id }}</td>
+          <td>{{ rental.book.bookinfo.title }}</td>
+          <td>{{ rental.book.bookinfo.author }}</td>
+          <td>{{ rental.rental_date }}</td>
+          <td>{{ rental.return_deadline }}</td>
+          {% if rental.return_date is None %}
+          <td></td>
+          {% else %}
+          <td>{{ rental.return_date }}</td>
+          {% endif %}
+          {% if rental.return_date is None %}
+          <td>貸出中</td>
+          {% else %}
+          <td>返却済み</td>
+          {% endif %}
+
+        </tr>
+  {% endfor %}
+</table>
+<br>
+{% for no in plist %}
+    {% if now_no == no %}
+    {{no}}
+    {% else %}
+    <a href="{% url 'history' no %}">{{no}}</a>
+    {% endif %}
+{% endfor %}
+{% endif %}
+<br>
+<hr>
+<br>
+<h3>～予約中リスト～</h3>
+{% if wish_history|length == 0 %}
+<p>現在予約はありません</p>
+{% else %}
+<table border="1" style="width:60%; border:1px solid black;margin: 0 auto;">
+        <tr style="border:1px solid black; background-color:orange; color:white;">
+          <th>資料タイトル</th>
+          <th>著者</th>
+          <th>ISBN</th>
+          <th>予約日</th>
+          <th>確保状態</th>
+          <th>予約キャンセル</th>
+        </tr>
+  {% for wish in wish_history %}
+
+        <tr style="border:1px solid black;">
+          <td>{{ wish.bookinfo.title }}</td>
+          <td>{{ wish.bookinfo.author }}</td>
+          <td>{{ wish.bookinfo.isbn }}</td>
+          <td>{{ wish.reserve_date }}</td>
+          {% if wish.book is None %}
+            <td>確保待ち</td>
+          {% else %}
+            <td>確保中</td>
+          {% endif %}
+          <td><a href="{% url 'wish_cancel' wish.id %}">予約キャンセル</a></td>
+
+        </tr>
+  {% endfor %}
+  </table>
+{% endif %}
+<br>
+<a class="btn btn-info"  href="{% url 'user_my_page' %}" style="color: whitesmoke;">戻る</a>
+<br>
+<hr>
+<br>
+
+
+{% endblock %}

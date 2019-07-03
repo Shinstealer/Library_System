@@ -1,0 +1,34 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【返却確認】</h2>
+      <table style="width:70%;margin: 0 auto;">
+
+        <tr>
+          <th>資料id</th>
+          <td>{{ book.pk }}</td>
+        </tr>
+
+        <tr>
+          <th>資料タイトル</th>
+          <td>{{ book.bookinfo.title }}</td>
+        </tr>
+
+      </table>
+      <br>
+      <p>返却を確定しますか？</p>
+      <a class="btn btn-info"  style="color:white;" href="{% url 'book_return' book.pk %}">返却を確定する</a>
+
+      <br><br>
+      <input type="button" value="戻る" onClick="javascript:history.go(-1);">
+
+
+<br>
+<hr>
+<a href="{% url 'index' %}">ホームへ戻る</a>
+
+
+{% endblock %}

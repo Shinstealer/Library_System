@@ -8,3 +8,11 @@ from book_manager.views.book_info_update_view import BookInfoUpdateView
 from book_manager.views.book_list_view import BookListView
 from book_manager.views.book_update_view import BookUpdateView
 from book_manager.views.isbn_search import isbnSearch
+from book_manager.views.book_info_list_view import BookInfoListView
+from book_manager.views.book_list_view import BookListView
+from book_manager.views.book_info_detail_view import BookInfoDetailView
+from book_manager.views.check_book_info_view import CheckBookInfoView
+from book_manager.views.check_book_view import CheckBookView
+from book_manager.views.complete_book_info_view import CompleteBookInfoView
+from book_manager.views.complete_book_view import CompleteBookView
+from book_manager.views.error_book_info_view import ErrorBookInfoView

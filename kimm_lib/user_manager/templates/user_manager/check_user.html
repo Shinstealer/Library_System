@@ -1,0 +1,26 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+<br>
+<h1>会員{{object.name}}の削除</h1>
+<table style="width:100%; border:1px solid black;">
+  <tr style="border:1px solid black;">
+    <th>ID</th><th>会員名</th><th>住所</th><th>電話番号</th><th>E-mail</th><th>生年月日</th>
+    <tr>
+    <td>{{ object.id }}</td><td>{{ object.full_name }}</td>
+    <td>{{ object.address }}</td><td>{{ object.tel }}</td><td>{{ object.email }}</td><td>{{ object.birthday }}</td>
+    </tr>
+</table>
+
+<br>
+<form method="post">
+    {% csrf_token %}
+      <div class="container">
+        <div class="col-12">
+          <button class="btn btn-primary" id="save" type = "submit">Delete</button>
+          <a class="btn btn-danger" href="{% url 'user_list' 'all' %}">Back</a>
+
+        </div>
+      </div>
+</form>
+{% endblock %}

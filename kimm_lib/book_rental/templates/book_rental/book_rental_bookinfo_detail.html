@@ -1,0 +1,91 @@
+{% extends 'book_rental/book_rental_base.html' %}
+
+{% block TITLE_AREA %}資料情報詳細{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<h2>【資料情報詳細】</h2>
+
+<div class="">
+        <h2>資料タイトル：{{ object.title }}</h2>
+      </div>
+      <table class="table table-hover" style="width:50%; border:1px solid black;margin: 0 auto;">
+
+        <tr style="border:1px solid black;">
+          <th scope="col">ISBN番号</th>
+          <td>{{ object.isbn }}</td>
+        </tr>
+
+        <tr style="border:1px solid black;">
+          <th scope="col">分類コード</th>
+          <td>{{ object.category.name }}（{{ object.category.code }}）</td>
+        </tr>
+        <tr style="border:1px solid black;">
+          <th scope="col">著者</th>
+          <td>{{ object.author }}</td>
+        </tr>
+
+          <tr style="border:1px solid black;">
+            <th scope="col">出版社</th>
+            <td>{{ object.publisher }}</td>
+          </tr>
+
+          <tr>
+            <th scope="col">出版日</th>
+            <td>{{ object.publish_date }}</td>
+          </tr>
+
+      </table>
+      <br>
+
+
+    <br><br>
+      <h3>～資料台帳一覧～</h3>
+      <table border="1" style="width:60%; border:1px solid black;margin: 0 auto;">
+              <tr style="border:1px solid black; background-color:green; color:white;">
+                <th>資料id</th>
+                <th>状態</th>
+              </tr>
+        {% for book in book_list %}
+
+              <tr style="border:1px solid black;">
+                <td>{{ book.id }}</td>
+                <td>{{ book.status.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+      <br>
+      <br>
+      <h3>～レビュー～</h3>
+      <p>■<a href="{% url 'book_review' object.pk %}">レビューをする</a></p>
+      {% if review_list|length == 0 %}
+      <p>現在レビューはありません</p>
+      <p>レビューをしませんか？</p>
+      {% else %}
+
+      <hr>
+      <table border="1" style="width:60%; border:1px solid black;margin: 0 auto;">
+              <tr style="border:1px solid black; background-color:green; color:white;">
+                <th>レビュー日</th>
+                <th>評価</th>
+                <th>コメント</th>
+              </tr>
+        {% for review in review_list %}
+
+              <tr style="border:1px solid black;">
+                <td>{{ review.created_at }}</td>
+                <td>★{{ review.grade }}</td>
+                <td>{{ review.comment }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+      <hr>
+      <br>
+      <input type="button" value="戻る" class="btn btn-secondary" onClick="javascript:history.go(-1);">
+
+
+{% endblock %}

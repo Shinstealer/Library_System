@@ -1,0 +1,45 @@
+{% extends 'book_manager/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【予約完了】</h2>
+    <table style="width:70%;margin: 0 auto;">
+
+      <tr>
+        <th>資料タイトル</th>
+        <td>{{ bookinfo.title }}</td>
+      </tr>
+
+      <tr>
+        <th>著者</th>
+        <td>{{ bookinfo.author }}</td>
+      </tr>
+
+    <tr>
+        <th>ISBN番号</th>
+        <td>{{ bookinfo.isbn }}</td>
+      </tr>
+
+      <tr>
+        <th>会員ID</th>
+        <td>{{ user.pk }}</td>
+      </tr>
+
+      <tr>
+        <th>会員ネーム</th>
+        <td>{{ user.full_name }}</td>
+      </tr>
+    </table>
+      <br>
+      <p>予約処理が完了しました。</p>
+      <h3>{{ word }}</h3>
+
+
+<br>
+<hr>
+<a class="btn btn-info" href="{% url 'index' %}" style="color: white;">ホームへ戻る</a>
+
+
+{% endblock %}

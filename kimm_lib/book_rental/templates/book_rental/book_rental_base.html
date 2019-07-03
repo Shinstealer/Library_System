@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstraop css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
+    <!-- forms.css/widget.cssスタイル関連 -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+    <title>{% block TITLE_AREA %}{% endblock %}</title>
+    <style>
+        *{
+            font-family: "Sawarabi Gothic";
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            background-color:#F5F5F5;
+            text-align: center;
+
+        }
+        a , u{
+            text-decoration: none !important;
+
+        }
+
+        .main_header a{
+          color: #F5F5F5;
+        }
+        .login_container{
+            margin-top: 10px;
+            height: 25px;
+            width: 100%;
+        }
+        .login_user{
+            font-size: 25px;
+            margin-right: 1em;
+        }
+        .user_header{
+            width: 100%;
+            padding: 20px;
+            float: right;
+
+        }
+        #base_title{
+            font-size: 3em;
+            margin-top: 15px;
+            text-align: center;
+            height: 95px;
+            width: 100%;
+        }
+
+        .manager{
+            font-size: 25px;
+        }
+        .base_img img{
+            width: 250px;
+            height: 350px;
+        }
+
+        .create{
+    width: 100%;
+    height: 1000px;
+}
+.createbox{
+    margin: auto;
+}
+.book_rental_head{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    width:100%;
+    height:100px;
+    background-color: #333;
+    min-width: 300px;
+}
+table{
+  box-shadow: 10px 10px 5px grey;
+  width:80%;
+  margin: 0 auto;
+}
+  tr{
+
+  color: white;
+}
+  th{
+  background-color: #b2c430;
+}
+  td{
+  background-color: #969393;
+}
+  td > a{
+  color: white !important;
+}
+  tr th{
+  text-align: center;
+}
+
+    
+</style>
+</head>
+<body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<div class=" book_rental_head"style="">
+    <div class="container justify-content-md-center user_header" >
+        <div class="row">
+            <div class="col col-lg-2">
+
+            </div>
+            <div class="col col-lg-2">
+
+                </div>
+            <div class="col-md-auto">
+                <span class="login_user">{{ welcome_word }}</span>
+            </div>
+            <div class="col-md-auto" style="font-size: 25px; margin-right: 2em;">
+                <a href="{% url 'logout' %}" style="color: whitesmoke;">ログアウト</a>
+            </div>
+
+
+            <div class="col-md-auto" style="font-size: 25px;">
+                <a href="{% url 'user_my_page' %}" style="color: white;">MY PAGE</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 1.5em; font-size: 5em;">
+
+    <a style="color:black;" href="{% url 'user_index' %}">図書館管理システム</a>
+</div>
+<hr>
+<br>
+<br>
+
+{% if messages %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="messages mt-3">
+          {% for message in messages %}
+            <div class="alert alert-dismissable alert-{{ message.tag }}" data-alert="alert" style="background-color: aliceblue">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
+ 
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Snowstorm/20131208/snowstorm-min.js"></script>
+<script>
+	snowStorm.snowColor = '#fc67fa';
+	snowStorm.flakesMax = 100;
+	snowStorm.flakesMaxActive = 50;
+	snowStorm.useTwinkleEffect = 10;
+	snowStorm.followMouse = 1;
+	snowStorm.snowStick = 1;
+	snowStorm.animationInterval = 500;
+	snowStorm.excludeMobile = 1;
+	snowStorm.zIndex = 9999;
+</script>  
+
+<script type="text/javascript">
+
+{% block javascript %}
+
+
+{% endblock %}
+</script>
+
+
+
+</html>

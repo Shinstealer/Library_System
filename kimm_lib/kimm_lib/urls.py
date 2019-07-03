@@ -20,5 +20,11 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('book_manager/', include('book_manager.urls'))
+    path('book_manager/', include('book_manager.urls')),
+    path('operator_manager/', include('operator_manager.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('user_manager/',include('user_manager.urls')),
+    path('book_rental/', include('book_rental.urls')),
+    path('user_page/',include('user_page.urls')),
+    path('reviews/',include('reviews.urls')),
 ]

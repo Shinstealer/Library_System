@@ -1,0 +1,17 @@
+{% extends 'book_rental/book_rental_base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【コメントエラー】</h2>
+<p style="color:red;">※既にレビューしています。</p>
+
+<input type="button" value="戻る" onClick="javascript:history.go(-1);">
+<br>
+<hr>
+<a href="{% url 'user_index' %}">ホームへ戻る</a>
+
+
+
+{% endblock %}

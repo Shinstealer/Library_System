@@ -1,0 +1,20 @@
+{% extends 'book_manager/base.html' %}
+
+{% block TITLE_AREA %}予約エラー{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【予約エラー】</h2>
+<p style="color:red; font-size: 20px;">※{{ word }}</p>
+
+<button class="btn btn-secondary" onClick="javascript:history.go(-1);">戻る</button>
+
+<br>
+<hr>
+<a class="btn btn-secondary" href="{% url 'index' %}" style="color: white">ホームへ戻る</a>
+
+
+
+{% endblock %}

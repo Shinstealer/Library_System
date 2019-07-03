@@ -1,0 +1,19 @@
+{% extends 'book_rental/book_rental_base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<h2>【レビュー完了】</h2>
+
+      <p>レビュー完了しました。</p>
+
+
+<br>
+<a href="{% url 'book_rental_bookinfo_detail' bookinfo.id %}">資料詳細ページへ戻る</a>
+<br>
+<hr>
+<a href="{% url 'user_index' %}">ホームへ</a>
+
+
+{% endblock %}

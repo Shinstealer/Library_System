@@ -1,5 +1,7 @@
 {% extends 'book_manager/base.html' %}
 
+{% block TITLE_AREA %}台帳詳細{% endblock %}
+
 {% block content %}
   <div class="container">
     <div class="row">
@@ -14,16 +16,16 @@
             <div class="card-footer">
               備考: {{ object.remarks|linebreaksbr }}
             </div>
-            
 
-            
+
+
           <div class="card-footer">
-            <a class="btn btn-primary" href="{% url 'book_update' object.pk %}">UPDATE</a>
-            <a class="btn btn-danger" href="#">DELETE</a>
-            <a class="btn btn-info" href="{% url 'book_list'%}">Back to List</a>
+            <a class="btn btn-primary" href="{% url 'book_update' object.pk %}">編集</a>
+            <a class="btn btn-danger" href="#">削除</a>
+            <input type="button" value="Back" class="btn btn-danger" onClick="javascript:history.go(-1);">
           </div>
 
-          
+
         </div>
       </div>
     </div>
