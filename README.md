@@ -14,7 +14,7 @@
 
 **:book: Editor**
 
-* [visualStudio]
+* [Visual studio]
 
 **:book: Language**
 
