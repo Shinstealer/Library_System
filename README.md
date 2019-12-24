@@ -1,13 +1,46 @@
-### Library System
+# Python Django Web Project
 
-### Book rental / Users manager System
+**:book: project**
 
-<ul>
-  <li>Server-Side Lanaguage : Python</li>
-  <li>Client-Side Language : HTML5 , CSS , Javascript</li>
-  <li>DataBase : PostgreSQL</li>
-  <li>Version Manager System : Git</li>
-  <li>Design Pattern : MVC pattern</li>
-</ul>
+:arrow_right: Library Management System 
+
+**:book: purpose**
+
+:arrow_right: It is to experience and learn how to build web system with MVC pattern in python
+
+**:book: Enviorment**
+
+* [Django]
+
+**:book: Language**
+
+* [Python 3.6]
+* [JAVASCRIPT]
+* [Jquery]
+* [HTML5]
+* [CSS3]
+* [Bootstrap]
+
+**:book: DataBase**
+
+* [PostgreSQL]
+
+**:book: server**
+
+* [django server]
+
+**:book: test**
+
+* [python unit test]
+
+## Acknowledgments
+
+* OOP
+* Set devlopment enviroment in django project
+* Connection between API and DB
+* DB flow among tables
+* MVC pattern
+* web development flow in django flamework
+* unit tests
 
 
