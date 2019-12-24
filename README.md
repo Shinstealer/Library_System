@@ -8,9 +8,13 @@
 
 :arrow_right: It is to experience and learn how to build web system with MVC pattern in python
 
-**:book: Enviorment**
+**:book: FlameWork**
 
 * [Django]
+
+**:book: Editor**
+
+* [visualStudio]
 
 **:book: Language**
 
@@ -32,6 +36,10 @@
 **:book: test**
 
 * [python unit test]
+
+**:book: version management tool**
+
+* [git]
 
 ## Acknowledgments
 
